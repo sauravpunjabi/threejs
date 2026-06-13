@@ -20,6 +20,50 @@ const ref = useRef()
   )
 }
 
+const Sphere = ({position, size, color}) => {
+const ref = useRef()
+
+  useFrame((state, delta) => {
+    ref.current.rotation.x += delta
+    ref.current.rotation.y += delta * 3
+    ref.current.position.z = Math.sin(state.clock.elapsedTime) * 2 
+  })
+
+  return(
+    <mesh position={position} ref={ref}>
+      <sphereGeometry args={size}/>
+      <meshStandardMaterial color={color} wireframe/>
+    </mesh>
+  )
+}
+
+const Torus = ({position, size, color}) => {
+  return(
+    <mesh position={position}  >
+      <torusGeometry args={size}/>
+      <meshStandardMaterial color={color} />
+    </mesh>
+  )
+}
+
+const Donut = ({position, size, color}) => {
+const ref = useRef()
+
+  useFrame((state, delta) => {
+    ref.current.rotation.x += delta
+    ref.current.rotation.y += delta * 3
+    ref.current.position.z = Math.sin(state.clock.elapsedTime) * 2 
+})
+
+  return(
+    <mesh position={position} ref={ref}>
+      <torusKnotGeometry args={size}/>
+      <meshStandardMaterial color={color} />
+    </mesh>
+  )
+}
+
+
 function App() {
   return(
     <Canvas>
@@ -36,7 +80,10 @@ function App() {
       </group> */}
 
 
-      <Cube position={[0,0,0]} color={"red"} />
+      {/* <Cube position={[0,0,0]} color={"red"} /> */}
+      <Sphere position={[0,0,0]} size={[1, 30, 30]} color={"hotpink"} />
+      <Torus position={[2,0,0]} size={[0.8, 0.1, 30, 30]} color={"blue"} />
+      <Donut position={[-2, 0, 0]} size={[0.5, 0.1, 1000, 50]} color={"purple"} />
     </Canvas>
   )
 }
