@@ -1,7 +1,8 @@
 import {useRef, useState} from 'react'
 import {Canvas, useFrame} from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
+import { OrbitControls, useHelper } from '@react-three/drei'
 import './App.css'
+import { DirectionalLightHelper } from 'three'
 
 const Cube = ({ position, size, color }) => {
 const ref = useRef()
@@ -70,12 +71,14 @@ const ref = useRef()
 }
 
 
-function App() {
+const Scene = () => {
+const directionalLightRef = useRef()
+
+  useHelper(directionalLightRef, DirectionalLightHelper, 0.5, "white")
+
   return(
-    <Canvas>
-
-
-      <directionalLight position={[0,0, 2]} intensity={0.5}/>
+    <>
+      <directionalLight position={[0,1, 2]} intensity={0.5} ref={directionalLightRef}/>
       <ambientLight />
 
      {/*  <group position={[0, -1, 0]}>
@@ -94,6 +97,17 @@ function App() {
       <Donut position={[0, 0, 0]} size={[1, 0.1, 1000, 50]} color={"purple"} />
 
       <OrbitControls enableZoom={false}  />
+    </>
+  )
+}
+
+function App() {
+  return(
+    <Canvas>
+      <Scene />
+
+
+      
     </Canvas>
   )
 }
