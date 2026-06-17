@@ -18,8 +18,18 @@ const Hero = () => {
             opacity: 1,
             y: 0,
             ease: "power1.inOut",
+        }).to(".hero-text-scroll", {
+            duration: 1,
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",         /* got this from clippy */
+            ease: "circ.out"
+        }, "-=0.5")
 
-        });
+        /* to animate each character used titleSplit.chars */
+        .from(titleSplit.chars, {
+            yPercent: 200, 
+            stagger: 0.05,  /* gap for each character */
+            ease: "power2.out"
+        }, "-=0.5");
     });
 
     return (
