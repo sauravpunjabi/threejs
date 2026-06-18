@@ -57,7 +57,6 @@ const Message = () => {
             scrollTrigger: {
                 trigger: ".message-content p",
                 start: "top center",
-                markers: true,
             }
         });
         paraTl.from(paraSplit.words, {
