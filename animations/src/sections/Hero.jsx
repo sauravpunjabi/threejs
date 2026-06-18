@@ -30,6 +30,23 @@ const Hero = () => {
             stagger: 0.05,  /* gap for each character */
             ease: "power2.out"
         }, "-=0.5");
+
+    const heroTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".hero-container",
+            start: "1% top", /* start when top of the hero container hits at top of the viewport */
+            end: "bottom top",
+            scrub: true, /* ties the animation to scroll position */
+        },
+    });
+
+    heroTl.to(".hero-container", {
+        rotate: 7,
+        scale: 0.9,
+        yPercent: 30,
+        ease: "power1.inOut"
+    })
+
     });
 
     return (
