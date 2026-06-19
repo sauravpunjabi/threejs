@@ -15,6 +15,7 @@ const App = () => {
         <Hero />
         <Message />
         <Flavors />
+        <div className="border border-red-500 h-screen"></div>
     </main>
   )
 }
